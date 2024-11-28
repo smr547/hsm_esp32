@@ -3,6 +3,8 @@
 Demonstrate the use of a heirarchical state machine (HSM) on ESP32 by implementing the Example Heirarchical State Machine presented by
 Miro Samek in [this video](https://www.youtube.com/watch?v=NxV7JlU0-F4) and also decribed in Chapter 2 of his book [Practical StateCharts in C/C++](https://www.state-machine.com/doc/PSiCC.pdf) 
 
+![Model Diagram](./qhsmtst.pgn)
+
 The model for the state machine is contained in the [model file](./src/qhsmtst.qm) in the ``src`` directory. The free [QM tool from Quantum Leaps](https://www.state-machine.com/products/qm) must be used to generate the C++ code which implements the state machine.
 
 ## Installation
