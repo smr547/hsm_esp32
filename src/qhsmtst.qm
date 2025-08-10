@@ -211,13 +211,13 @@ BSP_display(&quot;s11-D;&quot;);</action>
         </tran_glyph>
        </tran>
        <state_glyph node="19,25,12,8">
-        <entry box="1,2,5,2"/>
-        <exit box="1,4,5,2"/>
+        <entry box="0,3,5,2"/>
+        <exit box="0,5,5,2"/>
        </state_glyph>
       </state>
       <state_glyph node="13,15,21,21">
-       <entry box="1,2,5,2"/>
-       <exit box="1,4,5,2"/>
+       <entry box="0,3,5,2"/>
+       <exit box="0,5,5,2"/>
       </state_glyph>
      </state>
      <!--${SMs::QHsmTst::SM::s::s2}-->
@@ -311,26 +311,26 @@ BSP_display(&quot;s2-I;&quot;);</action>
          </tran_glyph>
         </tran>
         <state_glyph node="51,25,11,7">
-         <entry box="1,2,5,2"/>
-         <exit box="1,4,5,2"/>
+         <entry box="0,3,5,2"/>
+         <exit box="0,5,5,2"/>
         </state_glyph>
        </state>
        <state_glyph node="45,19,21,15">
-        <entry box="1,2,5,2"/>
-        <exit box="1,4,5,2"/>
+        <entry box="0,3,5,2"/>
+        <exit box="0,5,5,2"/>
        </state_glyph>
       </state>
       <state_glyph node="39,6,29,30">
-       <entry box="1,2,5,2"/>
-       <exit box="1,4,5,2"/>
+       <entry box="0,3,5,2"/>
+       <exit box="0,5,5,2"/>
       </state_glyph>
      </state>
      <state_glyph node="2,2,69,37">
-      <entry box="1,2,5,2"/>
-      <exit box="1,4,5,2"/>
+      <entry box="0,3,5,2"/>
+      <exit box="0,5,5,2"/>
      </state_glyph>
     </state>
-    <state_diagram size="79,41"/>
+    <state_diagram size="143,72"/>
    </statechart>
   </class>
  </package>

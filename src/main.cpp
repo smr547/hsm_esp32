@@ -2,6 +2,7 @@
 
 #include "qpcpp.hpp"    // QP/C++ framework
 #include "qhsmtst.hpp"  // QHsmTst state machine
+#include "esp_sleep.h"
 
 void setup() {
     Serial.begin(115200);
@@ -25,6 +26,11 @@ void loop() {
             sig = (QP::QSignal)(rc - 'A' + APP::A_SIG);
         } else if ((rc == 'x') || (rc == 'X')) {  // x or X?
             sig = APP::TERMINATE_SIG;  // terminate the interactive test
+
+        } else if ((rc == 's') || (rc == 'S')) {  // deep sleep
+            Serial.println("Sleeping");
+            esp_deep_sleep_start();
+            sig = APP::IGNORE_SIG;  // terminate the interactive test
         } else {
             sig = APP::IGNORE_SIG;
         }

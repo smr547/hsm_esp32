@@ -1,2 +1,4 @@
 .pio
 .vscode/
+src/qhsmtst.cpp
+src/qhsmtst.hpp
