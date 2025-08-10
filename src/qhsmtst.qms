@@ -8,7 +8,11 @@
   <item name="grid">3</item>
   <item name="backups">0</item>
  </group>
- <group name="windows"/>
+ <group name="windows">
+  <item id=".::qhsmtst.cpp">0,0,596,300</item>
+  <item id=".::qhsmtst.hpp">596,0,596,300</item>
+  <item id=".::file1">0,0,1956,1156,*</item>
+ </group>
  <group name="search">
   <item name="options">2032128</item>
   <item name="replace">0</item>
