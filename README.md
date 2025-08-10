@@ -16,3 +16,14 @@ The model for the state machine is contained in the [model file](./src/qhsmtst.q
 
 Note the symbolic link in the ``src`` directory to the file ``~/qp/qpcpp/src/qf/qep_hsm.cpp`` is necessary to allow ``PlatformIO`` to correctly compile the HSM implementation code.
 
+## Generating Code
+Use the QM command line tool
+
+```
+cd src
+qmc.sh qhsmtst.qm
+```
+
+Source templates are extracted from the model file and are populated from model content and written as ``*.cpp`` and ``*.hpp`` files.
+
+
