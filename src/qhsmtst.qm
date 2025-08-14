@@ -19,6 +19,7 @@ NOTE: This example uses only the &quot;QEP&quot; component of the QP/C++ framewo
     G_SIG,
     H_SIG,
     I_SIG,
+    J_SIG,
     TERMINATE_SIG,
     IGNORE_SIG,
     MAX_SIG
@@ -56,7 +57,7 @@ NOTE: This example uses only the &quot;QEP&quot; component of the QP/C++ framewo
    <!--${SMs::QHsmTst::SM}-->
    <statechart properties="0x02">
     <!--${SMs::QHsmTst::SM::initial}-->
-    <initial target="../1/5">
+    <initial target="../1/6">
      <action>Q_UNUSED_PAR(e);
 m_foo = 0U;
 BSP_display(&quot;top-INIT;&quot;);
@@ -81,7 +82,7 @@ QS_SIG_DICTIONARY(IGNORE_SIG, nullptr);</action>
      <entry>BSP_display(&quot;s-ENTRY;&quot;);</entry>
      <exit>BSP_display(&quot;s-EXIT;&quot;);</exit>
      <!--${SMs::QHsmTst::SM::s::initial}-->
-     <initial target="../4/7">
+     <initial target="../5/7">
       <action>BSP_display(&quot;s-INIT;&quot;);</action>
       <initial_glyph conn="31,7,5,0,-9,18">
        <action box="-6,0,6,2"/>
@@ -103,7 +104,7 @@ BSP_display(&quot;s-I;&quot;);</action>
       </tran_glyph>
      </tran>
      <!--${SMs::QHsmTst::SM::s::E}-->
-     <tran trig="E" target="../4/7">
+     <tran trig="E" target="../5/7">
       <action>BSP_display(&quot;s-E;&quot;);</action>
       <tran_glyph conn="28,39,2,2,-6">
        <action box="1,-2,6,2"/>
@@ -114,6 +115,13 @@ BSP_display(&quot;s-I;&quot;);</action>
       <action>BSP_terminate(0);</action>
       <tran_glyph conn="71,19,1,-1,4,17">
        <action box="0,-2,9,2"/>
+      </tran_glyph>
+     </tran>
+     <!--${SMs::QHsmTst::SM::s::J}-->
+     <tran trig="J">
+      <action>BSP_display(&quot;s-T; tick()&quot;);</action>
+      <tran_glyph conn="2,35,3,-1,9">
+       <action box="0,-2,11,3"/>
       </tran_glyph>
      </tran>
      <!--${SMs::QHsmTst::SM::s::s1}-->
@@ -164,14 +172,14 @@ BSP_display(&quot;s1-D;&quot;);</action>
        </tran_glyph>
       </tran>
       <!--${SMs::QHsmTst::SM::s::s1::F}-->
-      <tran trig="F" target="../../5/4/4">
+      <tran trig="F" target="../../6/4/4">
        <action>BSP_display(&quot;s1-F;&quot;);</action>
        <tran_glyph conn="34,31,1,3,17">
         <action box="0,-2,6,2"/>
        </tran_glyph>
       </tran>
       <!--${SMs::QHsmTst::SM::s::s1::C}-->
-      <tran trig="C" target="../../5">
+      <tran trig="C" target="../../6">
        <action>BSP_display(&quot;s1-C;&quot;);</action>
        <tran_glyph conn="34,17,1,3,5">
         <action box="0,-2,6,2"/>
@@ -204,7 +212,7 @@ BSP_display(&quot;s11-D;&quot;);</action>
         </tran_glyph>
        </tran>
        <!--${SMs::QHsmTst::SM::s::s1::s11::G}-->
-       <tran trig="G" target="../../../5/4/4">
+       <tran trig="G" target="../../../6/4/4">
         <action>BSP_display(&quot;s11-G;&quot;);</action>
         <tran_glyph conn="31,27,1,3,20">
          <action box="0,-2,6,2"/>
@@ -247,14 +255,14 @@ BSP_display(&quot;s2-I;&quot;);</action>
        </tran_glyph>
       </tran>
       <!--${SMs::QHsmTst::SM::s::s2::F}-->
-      <tran trig="F" target="../../4/7">
+      <tran trig="F" target="../../5/7">
        <action>BSP_display(&quot;s2-F;&quot;);</action>
        <tran_glyph conn="39,24,3,0,-11,1">
         <action box="-3,-2,6,2"/>
        </tran_glyph>
       </tran>
       <!--${SMs::QHsmTst::SM::s::s2::C}-->
-      <tran trig="C" target="../../4">
+      <tran trig="C" target="../../5">
        <action>BSP_display(&quot;s2-C;&quot;);</action>
        <tran_glyph conn="39,19,3,1,-5">
         <action box="-3,-2,6,2"/>
@@ -272,7 +280,7 @@ BSP_display(&quot;s2-I;&quot;);</action>
         </initial_glyph>
        </initial>
        <!--${SMs::QHsmTst::SM::s::s2::s21::G}-->
-       <tran trig="G" target="../../../4">
+       <tran trig="G" target="../../../5">
         <action>BSP_display(&quot;s21-G;&quot;);</action>
         <tran_glyph conn="45,21,3,1,-11">
          <action box="-3,-2,8,2"/>
@@ -338,7 +346,7 @@ BSP_display(&quot;s2-I;&quot;);</action>
  <directory name=".">
   <!--${.::qhsmtst.hpp}-->
   <file name="qhsmtst.hpp">
-   <text>#ifndef QHSMTST_HPP_
+   <text>#ifndef QHSMTST_HPP_ 
 #define QHSMTST_HPP_
 
 $declare ${Shared}
@@ -354,7 +362,7 @@ $declare ${SMs::QHsmTst}
 $define ${Shared::the_sm}
 $define ${SMs::QHsmTst}</text>
   </file>
-  <!--${.::file1}-->
+  <!--${.::main.cpp}-->
   <file name="main.cpp">
    <text>#include &lt;Arduino.h&gt;
 
@@ -378,9 +386,9 @@ void loop() {
         Serial.println(&quot;'&quot;);
 
         QP::QSignal sig = 0U;
-        if ('a' &lt;= rc &amp;&amp; rc &lt;= 'i') {  // in range?
+        if ('a' &lt;= rc &amp;&amp; rc &lt;= 'j') {  // in range?
             sig = (QP::QSignal)(rc - 'a' + APP::A_SIG);
-        } else if ('A' &lt;= rc &amp;&amp; rc &lt;= 'I') {  // in range?
+        } else if ('A' &lt;= rc &amp;&amp; rc &lt;= 'J') {  // in range?
             sig = (QP::QSignal)(rc - 'A' + APP::A_SIG);
         } else if ((rc == 'x') || (rc == 'X')) {  // x or X?
             sig = APP::TERMINATE_SIG;  // terminate the interactive test
