@@ -40,6 +40,8 @@ NOTE: This example uses only the &quot;QEP&quot; component of the QP/C++ framewo
    <!--${Shared::BSP_terminate::result}-->
    <parameter name="result" type="std::int16_t const"/>
   </operation>
+  <!--${Shared::BSP_deepSleep}-->
+  <operation name="BSP_deepSleep" type="void" visibility="0x00" properties="0x00"/>
  </package>
  <!--${SMs}-->
  <package name="SMs" stereotype="0x02" namespace="APP::">
@@ -112,7 +114,7 @@ BSP_display(&quot;s-I;&quot;);</action>
      </tran>
      <!--${SMs::QHsmTst::SM::s::TERMINATE}-->
      <tran trig="TERMINATE">
-      <action>BSP_terminate(0);</action>
+      <action>BSP_deepSleep();</action>
       <tran_glyph conn="71,19,1,-1,4,17">
        <action box="0,-2,9,2"/>
       </tran_glyph>
@@ -392,11 +394,6 @@ void loop() {
             sig = (QP::QSignal)(rc - 'A' + APP::A_SIG);
         } else if ((rc == 'x') || (rc == 'X')) {  // x or X?
             sig = APP::TERMINATE_SIG;  // terminate the interactive test
-
-        } else if ((rc == 's') || (rc == 'S')) {  // deep sleep
-            Serial.println(&quot;Sleeping&quot;);
-            esp_deep_sleep_start();
-            sig = APP::IGNORE_SIG;  // terminate the interactive test
         } else {
             sig = APP::IGNORE_SIG;
         }
@@ -420,6 +417,13 @@ void BSP_display(char const *msg) { Serial.println(msg); }
 //............................................................................
 void BSP_terminate(int16_t const result) {
     Serial.println(&quot;Bye Bye&quot;);
+    while (1) {
+    }
+}
+
+void BSP_deepSleep() {
+    Serial.println(&quot;Going to Deep Sleep&quot;);
+    esp_deep_sleep_start();
     while (1) {
     }
 }

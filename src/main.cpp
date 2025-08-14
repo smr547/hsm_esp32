@@ -63,11 +63,6 @@ void loop() {
             sig = (QP::QSignal)(rc - 'A' + APP::A_SIG);
         } else if ((rc == 'x') || (rc == 'X')) {  // x or X?
             sig = APP::TERMINATE_SIG;  // terminate the interactive test
-
-        } else if ((rc == 's') || (rc == 'S')) {  // deep sleep
-            Serial.println("Sleeping");
-            esp_deep_sleep_start();
-            sig = APP::IGNORE_SIG;  // terminate the interactive test
         } else {
             sig = APP::IGNORE_SIG;
         }
@@ -91,6 +86,13 @@ void BSP_display(char const *msg) { Serial.println(msg); }
 //............................................................................
 void BSP_terminate(int16_t const result) {
     Serial.println("Bye Bye");
+    while (1) {
+    }
+}
+
+void BSP_deepSleep() {
+    Serial.println("Going to Deep Sleep");
+    esp_deep_sleep_start();
     while (1) {
     }
 }
